@@ -4,11 +4,11 @@ package com.designpattern.proxy;
  * Created by zzf on 2018/4/10.
  * 静态代理类
  */
-public class BussinessProxy implements Bussiness{
+public class BussinessProxy implements IBussiness{
 
-    private Bussiness bussinessImpl;
+    private IBussiness bussinessImpl;
 
-    public void setBussinessImpl(Bussiness bussinessImpl) {
+    public void setBussinessImpl(IBussiness bussinessImpl) {
         this.bussinessImpl = bussinessImpl;
     }
 

@@ -1,9 +1,11 @@
 package com.designpattern;
 
-import com.designpattern.proxy.Bussiness;
 import com.designpattern.proxy.BussinessImpl;
 import com.designpattern.proxy.BussinessProxy;
+import com.designpattern.proxy.IBussiness;
 import com.designpattern.proxy.ProxyFactory;
+import com.designpattern.simpleFactory.IProduct;
+import com.designpattern.simpleFactory.SimpleFactory;
 import com.designpattern.singleton.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +57,17 @@ public class DesignpatternApplicationTests {
         proxy.execute();
         //动态代理
         ProxyFactory proxyFactory = new ProxyFactory(new BussinessImpl());
-        Bussiness bussiness = (Bussiness) proxyFactory.getConnectionProxy();
+        IBussiness bussiness = (IBussiness) proxyFactory.getConnectionProxy();
         bussiness.execute();
+    }
+    /**
+     * 简单工厂模式
+     */
+    @Test
+    public void simpleFactory(){
+        IProduct a = SimpleFactory.createProduct("A");
+        a.method();
+        IProduct b = SimpleFactory.createProduct("B");
+        b.method();
     }
 }
