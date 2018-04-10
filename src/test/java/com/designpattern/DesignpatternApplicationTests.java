@@ -1,5 +1,8 @@
 package com.designpattern;
 
+import com.designpattern.factoryMethod.Factory;
+import com.designpattern.factoryMethod.ProductAFactory;
+import com.designpattern.factoryMethod.ProductBFactory;
 import com.designpattern.proxy.BussinessImpl;
 import com.designpattern.proxy.BussinessProxy;
 import com.designpattern.proxy.IBussiness;
@@ -69,5 +72,17 @@ public class DesignpatternApplicationTests {
         a.method();
         IProduct b = SimpleFactory.createProduct("B");
         b.method();
+    }
+    /**
+     * 工厂方法模式
+     */
+    @Test
+    public void  factoryMethod(){
+        Factory factory = new ProductAFactory();
+        com.designpattern.factoryMethod.IProduct iProductA = factory.careateProduct();
+        iProductA.method();
+        factory = new ProductBFactory();
+        com.designpattern.factoryMethod.IProduct iProductB = factory.careateProduct();
+        iProductB.method();
     }
 }
