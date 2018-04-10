@@ -1,5 +1,9 @@
 package com.designpattern;
 
+import com.designpattern.proxy.Bussiness;
+import com.designpattern.proxy.BussinessImpl;
+import com.designpattern.proxy.BussinessProxy;
+import com.designpattern.proxy.ProxyFactory;
 import com.designpattern.singleton.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +16,8 @@ public class DesignpatternApplicationTests {
 
 	@Test
 	public void contextLoads() {
-	}
+
+    }
 
     /**
      * 单例模式
@@ -36,5 +41,21 @@ public class DesignpatternApplicationTests {
         internalClassSingleton.sayHi();
         InternalClassSingleton aaa = InternalClassSingleton.getInstance();
         aaa.sayHi();
+    }
+
+
+    /**
+     * 代理模式
+     */
+    @Test
+    public void proxy(){
+        //静态代理
+        BussinessProxy proxy = new BussinessProxy();
+        proxy.setBussinessImpl(new BussinessImpl());
+        proxy.execute();
+        //动态代理
+        ProxyFactory proxyFactory = new ProxyFactory(new BussinessImpl());
+        Bussiness bussiness = (Bussiness) proxyFactory.getConnectionProxy();
+        bussiness.execute();
     }
 }
