@@ -1,5 +1,6 @@
 package com.designpattern;
 
+import com.designpattern.abstractFactory.*;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
@@ -84,5 +85,21 @@ public class DesignpatternApplicationTests {
         factory = new ProductBFactory();
         com.designpattern.factoryMethod.IProduct iProductB = factory.careateProduct();
         iProductB.method();
+    }
+    /**
+     * 抽象工厂模式
+     */
+    @Test
+    public void abstarctFactory(){
+        AbstarctFactory factory = new ProductOnefactory();
+        ProductA productA = factory.createProductA();
+        ProductB productB = factory.createProductB();
+        productA.methodA();
+        productB.methodB();
+        factory = new ProductTwofactory();
+        productA = factory.createProductA();
+        productB = factory.createProductB();
+        productA.methodA();
+        productB.methodB();
     }
 }
