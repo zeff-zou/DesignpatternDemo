@@ -6,7 +6,6 @@ import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
 import com.designpattern.observer.integrated.Reader;
 import com.designpattern.observer.integrated.Writer;
-import com.designpattern.observer.integrated.WriterManager;
 import com.designpattern.observer.simple.Observable;
 import com.designpattern.observer.simple.Observer1;
 import com.designpattern.observer.simple.Observer2;
@@ -17,6 +16,7 @@ import com.designpattern.proxy.ProxyFactory;
 import com.designpattern.simpleFactory.IProduct;
 import com.designpattern.simpleFactory.SimpleFactory;
 import com.designpattern.singleton.*;
+import com.designpattern.strategy.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -152,5 +152,18 @@ public class DesignpatternApplicationTests {
 
         tomato1.addNovel("pangL");
         potato1.addNovel("doPoChangQ");
+    }
+    /**
+     * 策略模式
+     */
+    @Test
+    public void strategy(){
+        Customer customer = new Customer();
+        customer.buy(1000.00);
+        System.out.println("实际付款:"+customer.calLastAmount());
+        customer.buy(1000.00);
+        System.out.println("实际付款:"+customer.calLastAmount());
+        customer.buy(1000.00);
+        System.out.println("实际付款:"+customer.calLastAmount());
     }
 }
