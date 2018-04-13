@@ -4,6 +4,12 @@ import com.designpattern.abstractFactory.*;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
+import com.designpattern.observer.integrated.Reader;
+import com.designpattern.observer.integrated.Writer;
+import com.designpattern.observer.integrated.WriterManager;
+import com.designpattern.observer.simple.Observable;
+import com.designpattern.observer.simple.Observer1;
+import com.designpattern.observer.simple.Observer2;
 import com.designpattern.proxy.BussinessImpl;
 import com.designpattern.proxy.BussinessProxy;
 import com.designpattern.proxy.IBussiness;
@@ -101,5 +107,50 @@ public class DesignpatternApplicationTests {
         productB = factory.createProductB();
         productA.methodA();
         productB.methodB();
+    }
+    /**
+     * 观察者模式
+     */
+    @Test
+    public void Observer(){
+        //简单观察者例子
+        Observable observable = new Observable();
+        observable.addObserver(new Observer1());
+        observable.addObserver(new Observer2());
+        observable.changed();
+
+        //读者订阅作者例子
+        //初始化作者
+        Writer tomato = new Writer("tomato");
+        Writer potato = new Writer("potato");
+        //初始化读者
+        Reader zhangSan = new Reader("zhangSan");
+        Reader lisi = new Reader("lisi");
+        Reader wangwu = new Reader("wangwu");
+        //设置读者订阅作者
+        zhangSan.subscribe(tomato.getName());
+        zhangSan.subscribe(potato.getName());
+        lisi.subscribe(tomato.getName());
+        wangwu.subscribe(potato.getName());
+        //作者发布新书
+        potato.addNovel("doPoChangQ");
+        tomato.addNovel("pangL");
+        //取消订阅
+        wangwu.unsubscribe(potato.getName());
+        //作者发布新书
+        potato.addNovel("wuDongQianK");
+
+        //读者订阅例子(事件驱动模型)
+        com.designpattern.observer.event.Writer tomato1 = new com.designpattern.observer.event.Writer("tomato1");
+        com.designpattern.observer.event.Writer potato1 = new com.designpattern.observer.event.Writer("potato1");
+
+        com.designpattern.observer.event.Reader zhansan1 = new com.designpattern.observer.event.Reader("zhansan1");
+        com.designpattern.observer.event.Reader lisi1 = new com.designpattern.observer.event.Reader("lisi");
+        zhansan1.subscribe("tomato1");
+        lisi1.subscribe("tomato1");
+        lisi1.subscribe("potato1");
+
+        tomato1.addNovel("pangL");
+        potato1.addNovel("doPoChangQ");
     }
 }
