@@ -4,6 +4,10 @@ import com.designpattern.abstractFactory.*;
 import com.designpattern.adapter.DefaultAdapter.Man;
 import com.designpattern.adapter.classAdapter.Adapter;
 import com.designpattern.adapter.objectAdapter.ObjectAdater;
+import com.designpattern.decorator.Coffee;
+import com.designpattern.decorator.ConcreteCafe;
+import com.designpattern.decorator.MilkDecorator;
+import com.designpattern.decorator.SugarDecorator;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
@@ -199,5 +203,20 @@ public class DesignpatternApplicationTests {
 
         Tomato tomato = new Tomato();
         tomato.cookProcess();
+    }
+    /**
+     * 装饰器模式
+     */
+    @Test
+    public void decorator(){
+        //原对象
+        Coffee coffee = new ConcreteCafe();
+        coffee.getCoffee();
+        //装饰成MilkDecorator
+        MilkDecorator milkDecorator = new MilkDecorator(coffee);
+        milkDecorator.getCoffee();
+        //装饰成SugarDecorator
+        SugarDecorator sugarDecorator = new SugarDecorator(coffee);
+        sugarDecorator.getCoffee();
     }
 }
