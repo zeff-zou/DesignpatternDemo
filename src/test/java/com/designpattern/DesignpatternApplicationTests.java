@@ -1,6 +1,9 @@
 package com.designpattern;
 
 import com.designpattern.abstractFactory.*;
+import com.designpattern.adapter.DefaultAdapter.Man;
+import com.designpattern.adapter.classAdapter.Adapter;
+import com.designpattern.adapter.objectAdapter.ObjectAdater;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
@@ -54,8 +57,6 @@ public class DesignpatternApplicationTests {
         InternalClassSingleton aaa = InternalClassSingleton.getInstance();
         aaa.sayHi();
     }
-
-
     /**
      * 代理模式
      */
@@ -165,5 +166,25 @@ public class DesignpatternApplicationTests {
         System.out.println("实际付款:"+customer.calLastAmount());
         customer.buy(1000.00);
         System.out.println("实际付款:"+customer.calLastAmount());
+    }
+    /**
+     * 适配器模式
+     */
+    @Test
+    public void adpater(){
+        //类适配器
+        Adapter adapter = new Adapter();
+        adapter.method1();
+        adapter.method2();
+        //对象适配器
+        ObjectAdater objectAdater = new ObjectAdater();
+        objectAdater.method1();
+        objectAdater.method2();
+        objectAdater.method3();
+        //缺省适配器
+        Man man = new Man();
+        man.speak();
+        man.listen();
+        man.work();
     }
 }
