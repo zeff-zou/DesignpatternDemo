@@ -20,6 +20,8 @@ import com.designpattern.simpleFactory.IProduct;
 import com.designpattern.simpleFactory.SimpleFactory;
 import com.designpattern.singleton.*;
 import com.designpattern.strategy.Customer;
+import com.designpattern.templateMethod.Cabbage;
+import com.designpattern.templateMethod.Tomato;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -186,5 +188,16 @@ public class DesignpatternApplicationTests {
         man.speak();
         man.listen();
         man.work();
+    }
+    /**
+     * 模板方法模式
+     */
+    @Test
+    public void templateMethod(){
+        Cabbage cabbage = new Cabbage();
+        cabbage.cookProcess();
+
+        Tomato tomato = new Tomato();
+        tomato.cookProcess();
     }
 }
