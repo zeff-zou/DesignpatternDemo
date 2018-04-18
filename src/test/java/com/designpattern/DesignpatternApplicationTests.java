@@ -8,6 +8,9 @@ import com.designpattern.decorator.Coffee;
 import com.designpattern.decorator.ConcreteCafe;
 import com.designpattern.decorator.MilkDecorator;
 import com.designpattern.decorator.SugarDecorator;
+import com.designpattern.facade.ParentSreviceImpl;
+import com.designpattern.facade.Sub1ServiceImpl;
+import com.designpattern.facade.Sub2ServiceImpl;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
@@ -218,5 +221,13 @@ public class DesignpatternApplicationTests {
         //装饰成SugarDecorator
         SugarDecorator sugarDecorator = new SugarDecorator(coffee);
         sugarDecorator.getCoffee();
+    }
+    /**
+     * 外观模式
+     */
+    @Test
+    public void facade(){
+        ParentSreviceImpl parentSrevice = new ParentSreviceImpl(new Sub1ServiceImpl(), new Sub2ServiceImpl());
+        parentSrevice.function();
     }
 }
