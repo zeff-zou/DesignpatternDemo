@@ -15,6 +15,10 @@ import com.designpattern.facade.Sub2ServiceImpl;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
+import com.designpattern.mediator.Employee;
+import com.designpattern.mediator.EmployeeA;
+import com.designpattern.mediator.EmployeeB;
+import com.designpattern.mediator.MediatorImpl;
 import com.designpattern.observer.integrated.Reader;
 import com.designpattern.observer.integrated.Writer;
 import com.designpattern.observer.simple.Observable;
@@ -249,5 +253,22 @@ public class DesignpatternApplicationTests {
         contro.onButtonWasPushed();
         contro.setCommand(tvCommand);
         contro.onButtonWasPushed();
+    }
+    /**
+     * 中介者模式
+     */
+    @Test
+    public void mediator(){
+        //创建员工
+        Employee employeeA = new EmployeeA();
+        Employee employeeB = new EmployeeB();
+        //创建中介者
+        MediatorImpl mediator = new MediatorImpl();
+        //将中介者与员工绑定
+        mediator.addEmployee(employeeA);
+        mediator.addEmployee(employeeB);
+        //执行任务
+        employeeA.self();//A将会通过中介在调用其他员工的out方法，如:A员工
+        employeeB.self();//B将会通过中介在调用其他员工的out方法，如:B员工
     }
 }
