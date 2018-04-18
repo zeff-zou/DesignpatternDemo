@@ -4,6 +4,7 @@ import com.designpattern.abstractFactory.*;
 import com.designpattern.adapter.DefaultAdapter.Man;
 import com.designpattern.adapter.classAdapter.Adapter;
 import com.designpattern.adapter.objectAdapter.ObjectAdater;
+import com.designpattern.command.*;
 import com.designpattern.decorator.Coffee;
 import com.designpattern.decorator.ConcreteCafe;
 import com.designpattern.decorator.MilkDecorator;
@@ -229,5 +230,24 @@ public class DesignpatternApplicationTests {
     public void facade(){
         ParentSreviceImpl parentSrevice = new ParentSreviceImpl(new Sub1ServiceImpl(), new Sub2ServiceImpl());
         parentSrevice.function();
+    }
+    /**
+     * 命令模式
+     */
+    @Test
+    public void command(){
+        //被调用者
+        Light light = new Light();
+        Tv tv = new Tv();
+        //命令
+        LightCommand lightCommand = new LightCommand(light);
+        TvCommand tvCommand = new TvCommand(tv);
+        //调用者
+        SimpleRemoteContro contro = new SimpleRemoteContro();
+
+        contro.setCommand(lightCommand);
+        contro.onButtonWasPushed();
+        contro.setCommand(tvCommand);
+        contro.onButtonWasPushed();
     }
 }
