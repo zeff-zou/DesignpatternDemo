@@ -27,6 +27,8 @@ import com.designpattern.mediator.Employee;
 import com.designpattern.mediator.EmployeeA;
 import com.designpattern.mediator.EmployeeB;
 import com.designpattern.mediator.MediatorImpl;
+import com.designpattern.memento.Caretaker;
+import com.designpattern.memento.Originator;
 import com.designpattern.observer.integrated.Reader;
 import com.designpattern.observer.integrated.Writer;
 import com.designpattern.observer.simple.Observable;
@@ -314,5 +316,22 @@ public class DesignpatternApplicationTests {
         person.show();
         Person personB = director.constructPerson(new ManPersonB());
         personB.show();
+    }
+    /**
+     * 备忘录模式
+     */
+    @Test
+    public void memento(){
+        int state = 3;
+        Originator originator = new Originator();
+        Caretaker caretaker = new Caretaker();
+        originator.setState(state);
+        //缓存状态
+        caretaker.setMemento(originator.creatMemento());
+        //设置新的状态
+        originator.setState(5);
+        System.out.println("发起人最新状态:" + originator.getState());
+        //还原状态
+        originator.restoreMemento(caretaker.getMemento());
     }
 }
