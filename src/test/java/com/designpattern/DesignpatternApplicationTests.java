@@ -4,6 +4,10 @@ import com.designpattern.abstractFactory.*;
 import com.designpattern.adapter.DefaultAdapter.Man;
 import com.designpattern.adapter.classAdapter.Adapter;
 import com.designpattern.adapter.objectAdapter.ObjectAdater;
+import com.designpattern.bridge.Circle;
+import com.designpattern.bridge.Rectangle;
+import com.designpattern.bridge.Red;
+import com.designpattern.bridge.White;
 import com.designpattern.command.*;
 import com.designpattern.decorator.Coffee;
 import com.designpattern.decorator.ConcreteCafe;
@@ -270,5 +274,28 @@ public class DesignpatternApplicationTests {
         //执行任务
         employeeA.self();//A将会通过中介在调用其他员工的out方法，如:A员工
         employeeB.self();//B将会通过中介在调用其他员工的out方法，如:B员工
+    }
+    /**
+     * 桥接模式
+     */
+    @Test
+    public void bridge(){
+        //定义颜色
+        White white = new White();
+        Red red = new Red();
+
+        //创建正方形
+        Circle circle = new Circle();
+        circle.setColour(white);
+        circle.draw();
+        circle.setColour(red);
+        circle.draw();
+
+        //创建长方形
+        Rectangle rectangle = new Rectangle();
+        rectangle.setColour(white);
+        rectangle.draw();
+        rectangle.setColour(red);
+        rectangle.draw();
     }
 }
