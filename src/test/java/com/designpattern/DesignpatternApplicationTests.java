@@ -8,6 +8,10 @@ import com.designpattern.bridge.Circle;
 import com.designpattern.bridge.Rectangle;
 import com.designpattern.bridge.Red;
 import com.designpattern.bridge.White;
+import com.designpattern.builder.Director;
+import com.designpattern.builder.ManPersonA;
+import com.designpattern.builder.ManPersonB;
+import com.designpattern.builder.Person;
 import com.designpattern.command.*;
 import com.designpattern.decorator.Coffee;
 import com.designpattern.decorator.ConcreteCafe;
@@ -297,5 +301,18 @@ public class DesignpatternApplicationTests {
         rectangle.draw();
         rectangle.setColour(red);
         rectangle.draw();
+    }
+    /**
+     * 建造者模式
+     */
+    @Test
+    public void builder(){
+        //创建建造者
+        Director director = new Director();
+
+        Person person = director.constructPerson(new ManPersonA());
+        person.show();
+        Person personB = director.constructPerson(new ManPersonB());
+        personB.show();
     }
 }
