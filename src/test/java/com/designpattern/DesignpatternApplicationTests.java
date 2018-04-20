@@ -12,6 +12,7 @@ import com.designpattern.builder.Director;
 import com.designpattern.builder.ManPersonA;
 import com.designpattern.builder.ManPersonB;
 import com.designpattern.builder.Person;
+import com.designpattern.chain.*;
 import com.designpattern.command.*;
 import com.designpattern.composite.Folder;
 import com.designpattern.composite.IFile;
@@ -409,5 +410,23 @@ public class DesignpatternApplicationTests {
         for (int i = 0;i<file.getSubFileNumber();i++){
             printFile(fileName, file.getIFile(i));
         }
+    }
+    /**
+     * 责任链模式
+     */
+    @Test
+    public void chain(){
+        //初始化数据
+        AbstractCook buyFood = new BuyFood();
+        AbstractCook washFood = new WashFood();
+        AbstractCook cutFood = new CutFood();
+        AbstractCook prepareFood = new PrepareFood();
+        //设置责任链顺序
+        buyFood.setNextCook(washFood);
+        washFood.setNextCook(cutFood);
+        cutFood.setNextCook(prepareFood);
+
+        //开始执行责任链
+        buyFood.startOperator();
     }
 }
