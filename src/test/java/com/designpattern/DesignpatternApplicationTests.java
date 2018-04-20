@@ -13,6 +13,8 @@ import com.designpattern.builder.ManPersonA;
 import com.designpattern.builder.ManPersonB;
 import com.designpattern.builder.Person;
 import com.designpattern.command.*;
+import com.designpattern.composite.Folder;
+import com.designpattern.composite.IFile;
 import com.designpattern.decorator.Coffee;
 import com.designpattern.decorator.ConcreteCafe;
 import com.designpattern.decorator.MilkDecorator;
@@ -23,7 +25,6 @@ import com.designpattern.facade.Sub2ServiceImpl;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
-import com.designpattern.flyweight.Shape;
 import com.designpattern.flyweight.ShapeFactory;
 import com.designpattern.iterator.MyIterator;
 import com.designpattern.iterator.MyList;
@@ -374,5 +375,39 @@ public class DesignpatternApplicationTests {
         circle2.draw();
         //查看实际存在的对象数量
         ShapeFactory.getNmber();
+    }
+    /**
+     * 组合模式
+     */
+    @Test
+    public void composite(){
+        IFile root = new Folder("root");//创建根目录
+        root.createNewFile("text1");
+        root.createNewFile("text2");
+        IFile text1 = root.getIFile(0);//取出text1文件夹
+        text1.createNewFile("subText1");
+        text1.createNewFile("subText2");
+        IFile text2 = root.getIFile(1);//取出text2文件夹
+        text2.createNewFile("subText2");
+        IFile subText2 = text2.getIFile(0);////取出subText2文件夹
+        subText2.createNewFile("sub2");
+        //循环打印当前文件夹
+        this.printFile("",root);
+        //删除text2文件夹下的subText2
+        text2.deleteFile("subText2");
+        //循环打印当前文件夹
+        this.printFile("",root);
+        //删除text2文件夹
+        text2.delete();
+        //循环打印当前文件夹
+        this.printFile("",root);
+    }
+
+    private void printFile(String prefix,IFile file){
+        String fileName= prefix + "/" + file.getName();
+        System.out.println(fileName);
+        for (int i = 0;i<file.getSubFileNumber();i++){
+            printFile(fileName, file.getIFile(i));
+        }
     }
 }
