@@ -23,6 +23,10 @@ import com.designpattern.facade.Sub2ServiceImpl;
 import com.designpattern.factoryMethod.Factory;
 import com.designpattern.factoryMethod.ProductAFactory;
 import com.designpattern.factoryMethod.ProductBFactory;
+import com.designpattern.flyweight.Shape;
+import com.designpattern.flyweight.ShapeFactory;
+import com.designpattern.iterator.MyIterator;
+import com.designpattern.iterator.MyList;
 import com.designpattern.mediator.Employee;
 import com.designpattern.mediator.EmployeeA;
 import com.designpattern.mediator.EmployeeB;
@@ -333,5 +337,42 @@ public class DesignpatternApplicationTests {
         System.out.println("发起人最新状态:" + originator.getState());
         //还原状态
         originator.restoreMemento(caretaker.getMemento());
+    }
+    /**
+     * 迭代器模式
+     */
+    @Test
+    public void iterator(){
+        MyList myList = new MyList();
+        myList.addObject("123");
+        myList.addObject("456");
+        myList.addObject("789");
+
+        MyIterator iterator = myList.createIterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.getCurrentObj());
+            iterator.next();
+        }
+    }
+    /**
+     * 享元模式
+     */
+    @Test
+    public void flyweight(){
+        //创建几个测试用的颜色
+        String red = "红色";
+        String blue = "蓝色";
+        //开始创建画图工具
+        com.designpattern.flyweight.Circle circle = (com.designpattern.flyweight.Circle) ShapeFactory.getCircle(red);
+        circle.setRadius("5");
+        circle.draw();
+        com.designpattern.flyweight.Circle circle1 = (com.designpattern.flyweight.Circle) ShapeFactory.getCircle(blue);
+        circle1.setRadius("5");
+        circle1.draw();
+        com.designpattern.flyweight.Circle circle2 = (com.designpattern.flyweight.Circle) ShapeFactory.getCircle(red);
+        circle2.setRadius("10");
+        circle2.draw();
+        //查看实际存在的对象数量
+        ShapeFactory.getNmber();
     }
 }
