@@ -47,6 +47,8 @@ import com.designpattern.proxy.ProxyFactory;
 import com.designpattern.simpleFactory.IProduct;
 import com.designpattern.simpleFactory.SimpleFactory;
 import com.designpattern.singleton.*;
+import com.designpattern.state.ClosingState;
+import com.designpattern.state.Context;
 import com.designpattern.strategy.Customer;
 import com.designpattern.templateMethod.Cabbage;
 import com.designpattern.templateMethod.Tomato;
@@ -428,5 +430,17 @@ public class DesignpatternApplicationTests {
 
         //开始执行责任链
         buyFood.startOperator();
+    }
+    /**
+     * 状态模式
+     */
+    @Test
+    public void state(){
+        Context context = new Context();
+        context.setLiftState(new ClosingState());
+        context.open();
+        context.close();
+        context.run();
+        context.stop();
     }
 }
